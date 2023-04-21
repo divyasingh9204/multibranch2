@@ -27,6 +27,7 @@ pipeline {
 			}
 			steps {
 				echo 'Running deploy stage'
+				error 'Failing the Deploy stage'
 				snDevOpsChange()
 			}
 		}
