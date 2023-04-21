@@ -23,10 +23,11 @@ pipeline {
 		}
 		stage('Deploy') {
 			when {
-				equals expected: 2, actual: 2
+				branch 'main'
 			}
 			steps {
 				echo 'Running deploy stage'
+				snDevOpsChange()
 			}
 		}
 	}
