@@ -24,12 +24,12 @@ pipeline {
 			}
 		}
 		stage('Deploy') {
-			when {
-				branch 'main'
-			}
+			//when {
+			//	branch 'main'
+			//}
 			steps {
 				echo 'Running deploy stage'
-				error 'Failing the Deploy stage'
+				//error 'Failing the Deploy stage'
 				snDevOpsChange()
         script {
           echo 'Inside script step...'
