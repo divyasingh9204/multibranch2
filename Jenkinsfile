@@ -33,8 +33,8 @@ pipeline {
 				snDevOpsChange()
         script {
           echo 'Inside script step...'
-          //changeRequestId = snDevOpsGetChangeNumber()
-          changeRequestId = snDevOpsGetChangeNumber(changeDetails: """{"build_number":"${env.BUILD_NUMBER}","pipeline_name":pipelineName,"stage_name":"${stageName}"}""")
+          changeRequestId = snDevOpsGetChangeNumber()
+          //changeRequestId = snDevOpsGetChangeNumber(changeDetails: """{"build_number":"${env.BUILD_NUMBER}","pipeline_name":pipelineName,"stage_name":"${stageName}"}""")
           echo "Change Request Id without any attributes... ${changeRequestId}"
         }
 			}
