@@ -1,5 +1,6 @@
 def changeRequestId = "defaultChangeRequestId"
 def pipelineName = "Pipeline_snDevOpsGetChangeNumber"
+
 pipeline {
 	agent any
 	tools {
