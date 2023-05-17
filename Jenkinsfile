@@ -4,7 +4,7 @@ def pipelineName = "Pipeline_snDevOpsGetChangeNumber"
 pipeline {
 	agent any
 	tools {
-		maven "Maven"
+		maven "Maven" 
 	}
 	stages {
 		stage('Build') {
