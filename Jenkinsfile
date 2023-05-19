@@ -32,6 +32,7 @@ pipeline {
 				echo 'Running deploy stage'
 				//error 'Failing the Deploy stage'
 				snDevOpsChange()
+				sleep 10
         script {
           echo 'Inside script step...'
           //changeRequestId = snDevOpsGetChangeNumber()
