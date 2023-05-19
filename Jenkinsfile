@@ -1,5 +1,5 @@
 def changeRequestId = "defaultChangeRequestId"
-def pipelineName = "Pipeline_snDevOpsGetChangeNumber"
+def pipelineName = "rama folder/child-1/child-2/fMultibranch-1234"
 
 pipeline {
 	agent any
@@ -34,8 +34,8 @@ pipeline {
 				snDevOpsChange()
         script {
           echo 'Inside script step...'
-          changeRequestId = snDevOpsGetChangeNumber()
-          //changeRequestId = snDevOpsGetChangeNumber(changeDetails: """{"build_number":"${env.BUILD_NUMBER}","pipeline_name":pipelineName,"stage_name":"${stageName}"}""")
+          //changeRequestId = snDevOpsGetChangeNumber()
+          changeRequestId = snDevOpsGetChangeNumber(changeDetails: """{"build_number":"${env.BUILD_NUMBER}","pipeline_name":pipelineName,"stage_name":"Deploy", "branchName":"scratch/production"}""")
           echo "Change Request Id without any attributes... ${changeRequestId}"
         }
 			}
