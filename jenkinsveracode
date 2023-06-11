@@ -1,0 +1,38 @@
+pipeline {
+	agent any
+	
+	tools {
+		maven "Maven"
+	}
+
+	environment {
+		SCANNER = "Veracode"
+		VERACODE_APPLICATION_NAME = 'App-DevOps-Azure-POC'
+		VERACODE_API_ID = credentials('VERACODE_API_ID')
+		VERACODE_API_KEY = credentials('VERACODE_API_KEY')
+	}
+
+	stages {
+		stage('Build') {
+			steps {
+				echo "Building maven package"
+				sh 'mvn -B package --file pom.xml'
+
+				echo "Running veracode via command line arguments"
+				//veracode applicationName: "${env.VERACODE_APPLICATION_NAME}", criticality: 'VeryHigh', debug: true, timeout: 20, fileNamePattern: '', pHost: '', pPassword: '', pUser: '', replacementPattern: '', sandboxName: '', scanExcludesPattern: '', scanIncludesPattern: '', scanName: "${BUILD_TAG}", uploadExcludesPattern: '', uploadIncludesPattern: 'target/DevOps-Test-1.39.0-SNAPSHOT.jar', vid: "${env.VERACODE_API_ID}", vkey: "${env.VERACODE_API_KEY}"
+			}
+		}
+		stage('Scan Summary') {
+			steps {
+				echo "Using ServiceNow Security Results step to retrieve and store the security scan results"
+				snDevOpsSecurityResult securityResultAttributes: "{'scanner': 'Veracode', 'applicationName': 'App-DevOps-Azure-POC1', 'securityToolId': '185f9545c3932d1073fb212ad0013111'}"
+			}
+		}
+		stage('Deploy') {
+			steps {
+				echo "Deploying to staging"
+				snDevOpsChange()
+			}
+		}
+	}
+}
