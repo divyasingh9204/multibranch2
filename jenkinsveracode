@@ -19,7 +19,7 @@ pipeline {
 				//sh 'mvn -B package --file pom.xml'
 
 				echo "Running veracode via command line arguments"
-				//veracode applicationName: "${env.VERACODE_APPLICATION_NAME}", criticality: 'VeryHigh', debug: true, timeout: 20, fileNamePattern: '', pHost: '', pPassword: '', pUser: '', replacementPattern: '', sandboxName: '', scanExcludesPattern: '', scanIncludesPattern: '', scanName: "${BUILD_TAG}", uploadExcludesPattern: '', uploadIncludesPattern: 'target/DevOps-Test-1.39.0-SNAPSHOT.jar', vid: "${env.VERACODE_API_ID}", vkey: "${env.VERACODE_API_KEY}"
+				veracode applicationName: "${env.VERACODE_APPLICATION_NAME}", criticality: 'VeryHigh', debug: true, timeout: 20, fileNamePattern: '', pHost: '', pPassword: '', pUser: '', replacementPattern: '', sandboxName: '', scanExcludesPattern: '', scanIncludesPattern: '', scanName: "${BUILD_TAG}", uploadExcludesPattern: '', uploadIncludesPattern: 'target/DevOps-Test-1.39.0-SNAPSHOT.jar', vid: "${env.VERACODE_API_ID}", vkey: "${env.VERACODE_API_KEY}"
 			}
 		}
 		stage('Scan Summary') {
