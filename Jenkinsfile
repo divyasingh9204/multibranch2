@@ -21,8 +21,8 @@ pipeline {
 			steps {
 				echo 'Running test stage'
 				// error 'Failing the Test stage'
-				// snDevOpsSecurityResult securityResultAttributes: "{'scanner': 'Veracode', 'applicationName': 'testdummyapp'}"
-				snDevOpsChange()
+				snDevOpsSecurityResult securityResultAttributes: "{'scanner': 'Veracode', 'applicationName': 'VeraDemo10', 'securityToolId': 'a8b9e78583183110f36cdf647daad31c'}"
+				//snDevOpsChange()
 			}
 		}
 
@@ -32,7 +32,7 @@ pipeline {
 			}
 			steps {
 				echo 'Running test stage'
-				//snDevOpsChange()
+				snDevOpsChange()
 			}
 		}		
 		// stage('Deploy') {
