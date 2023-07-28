@@ -1,5 +1,4 @@
-def changeRequestId = "defaultChangeRequestId"
-def pipelineName = "rama folder/child-1/child-2/fMultibranch-1234"
+def pipelineName = "Multibranch folder/Mb scripted folder/Multibranch folder/"
 
 pipeline {
 	agent any
@@ -22,10 +21,20 @@ pipeline {
 			steps {
 				echo 'Running test stage'
 				// error 'Failing the Test stage'
-				snDevOpsSecurityResult securityResultAttributes: "{'scanner': 'Veracode', 'applicationName': 'testdummyapp'}"
-				snDevOpsChange()
+				snDevOpsSecurityResult securityResultAttributes: "{'scanner': 'Veracode', 'applicationName': 'VeraDemo10', 'securityToolId': 'a8b9e78583183110f36cdf647daad31c'}"
+				//snDevOpsChange()
 			}
 		}
+
+		stage('Deploy') {
+			when {
+				equals expected: 2, actual: 2
+			}
+			steps {
+				echo 'Running test stage'
+				snDevOpsChange()
+			}
+		}		
 		// stage('Deploy') {
 		// 	//when {
 		// 	//	branch 'main'
