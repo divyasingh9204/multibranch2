@@ -29,7 +29,7 @@ pipeline {
 				echo "Using ServiceNow Security Results step to retrieve and store the security scan results"
 				//snDevOpsSecurityResult securityResultAttributes: "{'scanner': 'Veracode', 'applicationName': 'App-DevOps-Azure-POC1', 'securityToolId': '185f9545c3932d1073fb212ad0013111'}"
 				//snDevOpsChange()
-				snDevOpsSecurityResult securityResultAttributes: "{'scanner': 'Veracode','applicationName': 'PetStoreAPI-Github', 'securityToolId' : 'b866c7429398311065edfca86cba104c'}"
+				snDevOpsSecurityResult securityResultAttributes: "{'scanner': 'Veracode','applicationName': 'PetStoreAPI-Github'
 			
 			}
 		}
