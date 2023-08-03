@@ -37,6 +37,7 @@ pipeline {
 			steps {
 				echo "Deploying to staging"
 				snDevOpsChange changeRequestDetails: '{ "attributes": { "chg_model": "007c4001c343101035ae3f52c1d3aeb2"}}'
+
 			}
 		}
 	}
