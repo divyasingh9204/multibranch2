@@ -19,20 +19,24 @@ pipeline {
 				//sh 'mvn -B package --file pom.xml'
 
 				echo "Running veracode via command line arguments"
-				veracode applicationName: "${env.VERACODE_APPLICATION_NAME}", criticality: 'VeryHigh', debug: true, timeout: 20, fileNamePattern: '', pHost: '', pPassword: '', pUser: '', replacementPattern: '', sandboxName: '', scanExcludesPattern: '', scanIncludesPattern: '', scanName: "${BUILD_TAG}", uploadExcludesPattern: '', uploadIncludesPattern: 'target/DevOps-Test-1.39.0-SNAPSHOT.jar', vid: "${env.VERACODE_API_ID}", vkey: "${env.VERACODE_API_KEY}"
+				//veracode applicationName: "${env.VERACODE_APPLICATION_NAME}", criticality: 'VeryHigh', debug: true, timeout: 20, fileNamePattern: '', pHost: '', pPassword: '', pUser: '', replacementPattern: '', sandboxName: '', scanExcludesPattern: '', scanIncludesPattern: '', scanName: "${BUILD_TAG}", uploadExcludesPattern: '', uploadIncludesPattern: 'target/DevOps-Test-1.39.0-SNAPSHOT.jar', vid: "${env.VERACODE_API_ID}", vkey: "${env.VERACODE_API_KEY}"
+			veracode applicationName: "PetStoreAPI-Github", criticality: 'VeryHigh', debug: true, timeout: 20, fileNamePattern: '', pHost: '', pPassword: '', pUser: '', replacementPattern: '', sandboxName: '', scanExcludesPattern: '', scanIncludesPattern: '', scanName: "${BUILD_TAG}", uploadExcludesPattern: '', uploadIncludesPattern: 'target/DevOps-Test-1.39.0-SNAPSHOT.jar', vid: "5a57339d6779ffb76782e03df3f6e9d1", vkey: "f31d151c427a3286469a6291b14dee15e7f553e066b32c801f09014dc3282de4f51a81cd0bde7c7dd9d95de9a71a32c8a2c582158f278320ae765fe9fd232e0a", waitForScan : 'true'
+				 
 			}
 		}
 		stage('Scan Summary') {
 			steps {
 				echo "Using ServiceNow Security Results step to retrieve and store the security scan results"
-				snDevOpsSecurityResult securityResultAttributes: "{'scanner': 'Veracode', 'applicationName': 'App-DevOps-Azure-POC1', 'securityToolId': '185f9545c3932d1073fb212ad0013111'}"
-				snDevOpsChange()
+				//snDevOpsSecurityResult securityResultAttributes: "{'scanner': 'Veracode', 'applicationName': 'App-DevOps-Azure-POC1', 'securityToolId': '185f9545c3932d1073fb212ad0013111'}"
+				//snDevOpsChange()
+				snDevOpsSecurityResult securityResultAttributes: "{'scanner': 'Veracode','applicationName': 'PetStoreAPI-Github','buildVersion': 'jenkins-divya-veracode-pipeline-6', 'securityToolId' : 'b866c7429398311065edfca86cba104c'}"
+			
 			}
 		}
 		stage('Deploy') {
 			steps {
 				echo "Deploying to staging"
-				snDevOpsChange()
+				snDevOpsChange changeRequestDetails: '{ "attributes": { "chg_model": "007c4001c343101035ae3f52c1d3aeb2"}}'
 			}
 		}
 	}
